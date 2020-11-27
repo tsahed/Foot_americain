@@ -28,7 +28,15 @@ namespace ModelLayers.Business
             this.Id = id;
             this.Nom = nom;
             this.DateCreation = dateCreation;
-            this.LesJoueurs = new List<Joueur>(lesJoueurs);
+            this.LesJoueurs = new List<Joueur>();
+        }
+
+        public Equipe()
+        {
+            this.Id = id;
+            this.Nom = nom;
+            this.DateCreation = dateCreation;
+            this.LesJoueurs = new List<Joueur>();
         }
         #endregion
 

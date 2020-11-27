@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelLayers.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Foot_americainWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(DAOpays thedaopays, DAOequipe thedaoequipe, DAOjoueur thedaojoueur, DAOposte thedaoposte)
         {
             InitializeComponent();
+            //Globale.DataContext = new viewModel.viewModelFromage(thedaopays, thedaofromage);
         }
     }
 }

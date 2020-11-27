@@ -39,6 +39,17 @@ namespace ModelLayers.Business
             this.Poste = poste;
             this.Equipe = equipe;
         }
+
+        public Joueur()
+        {
+            this.Id = id;
+            this.Nom = nom;
+            this.DateEntree = dateEntree;
+            this.DateNaissance = dateNaissance;
+            this.Pays = lePays;
+            this.Poste = lePoste;
+            this.Equipe = laEquipe;
+        }
         #endregion
     }
 }
