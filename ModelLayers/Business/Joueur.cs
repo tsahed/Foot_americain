@@ -15,7 +15,6 @@ namespace ModelLayers.Business
         private DateTime dateNaissance;
         private Pays lePays;
         private Poste lePoste;
-        private Equipe laEquipe;
         #endregion
 
         #region Accesseurs
@@ -25,11 +24,10 @@ namespace ModelLayers.Business
         public Pays Pays { get => lePays; set => lePays = value; }
         public Poste Poste { get => lePoste; set => lePoste = value; }
         public string Nom { get => nom; set => nom = value; }
-        public Equipe Equipe { get => laEquipe; set => laEquipe = value; }
         #endregion
 
         #region Constructeurs
-        public Joueur(int id, string nom, DateTime dateEntree, DateTime dateNaissance, Pays pays, Poste poste, Equipe equipe)
+        public Joueur(int id, string nom, DateTime dateEntree, DateTime dateNaissance, Pays pays, Poste poste)
         {
             this.Id = id;
             this.Nom = nom;
@@ -37,7 +35,6 @@ namespace ModelLayers.Business
             this.DateNaissance = dateNaissance;
             this.Pays = pays;
             this.Poste = poste;
-            this.Equipe = equipe;
         }
 
         public Joueur()
@@ -48,7 +45,6 @@ namespace ModelLayers.Business
             this.DateNaissance = dateNaissance;
             this.Pays = lePays;
             this.Poste = lePoste;
-            this.Equipe = laEquipe;
         }
         #endregion
 

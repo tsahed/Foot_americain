@@ -25,7 +25,6 @@ namespace Foot_americainWPF.viewModel
         private Equipe selectedEquipe = new Equipe();
         private Equipe activeEquipe = new Equipe();
         private Joueur selectedJoueur = new Joueur();
-        private Joueur activeJoueur = new Joueur();
 
         public ObservableCollection<Joueur> ListJoueurs { get => listJoueurs; set => listJoueurs = value; }
         public ObservableCollection<Equipe> ListEquipe { get => listEquipe; set => listEquipe = value; }
@@ -34,12 +33,18 @@ namespace Foot_americainWPF.viewModel
 
         public string Nom
         {
-            get => activeJoueur.Nom;
+            get 
+            {
+                if (selectedJoueur != null)
+                    return selectedJoueur.Nom;
+                else
+                    return null;
+            }
             set
             {
-                if (activeJoueur.Nom != value)
+                if (selectedJoueur.Nom != value)
                 {
-                    activeJoueur.Nom = value;
+                    selectedJoueur.Nom = value;
                     OnPropertyChanged("Nom");
                 }
             }
@@ -49,22 +54,16 @@ namespace Foot_americainWPF.viewModel
         {
             get
             {
-                if (activeJoueur.Pays == null)
-                {
-                    activeJoueur.Pays = null;
-                    return null;
-                }
-
+                if (selectedJoueur != null)
+                    return selectedJoueur.Pays;
                 else
-                {
-                    return activeJoueur.Pays;
-                }
+                    return null;
             }
             set
             {
-                if (activeJoueur.Pays != value)
+                if (selectedJoueur.Pays != value)
                 {
-                    activeJoueur.Pays = value;
+                    selectedJoueur.Pays = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("Pays");
                 }
@@ -75,22 +74,16 @@ namespace Foot_americainWPF.viewModel
         {
             get
             {
-                if (activeJoueur.Poste == null)
-                {
-                    activeJoueur.Poste = null;
-                    return null;
-                }
-
+                if (selectedJoueur != null)
+                    return selectedJoueur.Poste;
                 else
-                {
-                    return activeJoueur.Poste;
-                }
+                    return null;
             }
             set
             {
-                if (activeJoueur.Poste != value)
+                if (selectedJoueur.Poste != value)
                 {
-                    activeJoueur.Poste = value;
+                    selectedJoueur.Poste = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("Pays");
                 }
@@ -99,12 +92,18 @@ namespace Foot_americainWPF.viewModel
 
         public DateTime Naissance
         {
-            get => activeJoueur.DateNaissance;
+            get
+            {
+                if (selectedJoueur != null)
+                    return selectedJoueur.DateNaissance;
+                else
+                    return new DateTime();
+            }
             set
             {
-                if (activeJoueur.DateNaissance != value)
+                if (selectedJoueur.DateNaissance != value)
                 {
-                    activeJoueur.DateNaissance = value;
+                    selectedJoueur.DateNaissance = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("DateNaissance");
                 }
@@ -113,12 +112,18 @@ namespace Foot_americainWPF.viewModel
 
         public DateTime Entree
         {
-            get => activeJoueur.DateEntree;
+            get
+            {
+                if (selectedJoueur != null)
+                    return selectedJoueur.DateEntree;
+                else
+                    return new DateTime();
+            }
             set
             {
-                if (activeJoueur.DateEntree != value)
+                if (selectedJoueur.DateEntree != value)
                 {
-                    activeJoueur.DateEntree = value;
+                    selectedJoueur.DateEntree = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("DateEntree");
                 }
@@ -135,29 +140,13 @@ namespace Foot_americainWPF.viewModel
                     selectedEquipe = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("SelectedEquipe");
-                    if (selectedEquipe != null)
-                    {
-                        ActiveEquipe = selectedEquipe;
-                    }
-                }
-            }
-        }
-
-        public Equipe ActiveEquipe
-        {
-            get => activeEquipe;
-            set
-            {
-                if (activeEquipe != value)
-                {
-                    activeEquipe = value;
-                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("Nom");
                     OnPropertyChanged("DateCreation");
                     OnPropertyChanged("ListEquipe");
                 }
             }
         }
+
 
         public Joueur SelectedJoueur
         {
@@ -169,32 +158,16 @@ namespace Foot_americainWPF.viewModel
                     selectedJoueur = value;
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("SelectedJoueur");
-                    if (selectedJoueur != null)
-                    {
-                        ActiveJoueur = selectedJoueur;
-                    }
+                    OnPropertyChanged("Nom");
+                    OnPropertyChanged("Pays");
+                    OnPropertyChanged("Naissance");
+                    OnPropertyChanged("Poste");
+                    OnPropertyChanged("Entree");
                 }
             }
         }
 
-        public Joueur ActiveJoueur
-        {
-            get => activeJoueur;
-            set
-            {
-                if (activeJoueur != value)
-                {
-                    activeJoueur = value;
-                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
-                    OnPropertyChanged("Nom");
-                    OnPropertyChanged("DateEntree");
-                    OnPropertyChanged("DateNaissance");
-                    OnPropertyChanged("LePays");
-                    OnPropertyChanged("LePoste");
-                    OnPropertyChanged("LeEquipe");
-                }
-            }
-        }
+
 
         //déclaration du contructeur de viewModelFromage
         public viewModelJoueur(DAOpays thedaopays, DAOposte thedaoposte, DAOjoueur thedaojoueur, DAOequipe thedaoequipe)
@@ -229,16 +202,6 @@ namespace Foot_americainWPF.viewModel
                     i++;
                 }
                 lejoueur.Poste = listPostes[i];
-            }
-
-            foreach (Joueur lejoueur in ListJoueurs)
-            {
-                int i = 0;
-                while (lejoueur.Equipe.Id != listEquipe[i].Id)
-                {
-                    i++;
-                }
-                lejoueur.Equipe = listEquipe[i];
             }
         }
 
@@ -283,10 +246,10 @@ namespace Foot_americainWPF.viewModel
         private void UpdateJoueur()
         {
             Joueur backup = new Joueur();
-            backup = ActiveJoueur;
-            this.vmDaoJoueur.Update(this.ActiveJoueur);
+            backup = SelectedJoueur;
+            this.vmDaoJoueur.Update(this.SelectedJoueur, this.SelectedEquipe);
             int a = listJoueurs.IndexOf(SelectedJoueur);
-            listJoueurs.Insert(a, ActiveJoueur);
+            listJoueurs.Insert(a, SelectedJoueur);
             listJoueurs.RemoveAt(a + 1);
             SelectedJoueur = backup;
             MessageBox.Show("Mis à jour réussis");
@@ -295,9 +258,9 @@ namespace Foot_americainWPF.viewModel
         private void AddJoueur()
         {
             Joueur select = new Joueur();
-            this.vmDaoJoueur.Insert(this.ActiveJoueur);
-            listJoueurs.Add(this.ActiveJoueur);
-            select = this.ActiveJoueur;
+            this.vmDaoJoueur.Insert(this.SelectedJoueur, this.SelectedEquipe);
+            listJoueurs.Add(this.SelectedJoueur);
+            select = this.SelectedJoueur;
             SelectedJoueur = select;
             MessageBox.Show("Fromage ajouté");
         }
@@ -305,8 +268,8 @@ namespace Foot_americainWPF.viewModel
         private void DeleteJoueur()
         {
             Joueur backup = new Joueur();
-            backup = ActiveJoueur;
-            this.vmDaoJoueur.Delete(this.ActiveJoueur);
+            backup = SelectedJoueur;
+            this.vmDaoJoueur.Delete(this.SelectedJoueur);
             int a = listJoueurs.IndexOf(SelectedJoueur);
             listJoueurs.RemoveAt(a);
             MessageBox.Show("Fromage supprimé");

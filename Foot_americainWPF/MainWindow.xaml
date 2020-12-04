@@ -52,9 +52,9 @@
             <ComboBox Name="listPays"  ItemsSource="{Binding ListPays, Mode=OneTime}" SelectedItem="{Binding Pays}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
             <Label Content="Poste : " Grid.Row="4" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
             <ComboBox Name="listPostes" ItemsSource="{Binding ListPostes, Mode=OneTime}" SelectedItem="{Binding Poste}" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-            <Button Name="BpModif" Content="Mettre à jour" Command="{Binding UpdateJoueur}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
-            <Button Name="BpAjout" Content="Ajouter" Command="{Binding AddJoueur}" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
-            <Button Name="BpSupp" Content="Supprimer" Command="{Binding DeleteJoueur}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpModif" Content="Mettre à jour" Command="{Binding UpdateCommand}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpAjout" Content="Ajouter" Command="{Binding AddCommand}" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpSupp" Content="Supprimer" Command="{Binding DeleteCommand}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
         </Grid>
     </Grid>
 </Window>
