@@ -197,19 +197,19 @@ namespace Foot_americainWPF.viewModel
         }
 
         //déclaration du contructeur de viewModelFromage
-        public viewModelJoueur(DAOpays thedaopays, DAOposte thedaoposte, DAOjoueur thedaojoueur)
+        public viewModelJoueur(DAOpays thedaopays, DAOposte thedaoposte, DAOjoueur thedaojoueur, DAOequipe thedaoequipe)
         {
             vmDaoPays = thedaopays;
-
             listPays = new ObservableCollection<Pays>(thedaopays.SelectAll());
 
             vmDaoPoste = thedaoposte;
-
             listPostes = new ObservableCollection<Poste>(thedaoposte.SelectAll());
             
             vmDaoJoueur = thedaojoueur;
-
             listJoueurs = new ObservableCollection<Joueur>(thedaojoueur.SelectAll());
+
+            vmDaoEquipe = thedaoequipe;
+            listEquipe = new ObservableCollection<Equipe>(thedaoequipe.SelectAll());
 
             foreach (Joueur lejoueur in ListJoueurs)
             {
@@ -229,6 +229,16 @@ namespace Foot_americainWPF.viewModel
                     i++;
                 }
                 lejoueur.Poste = listPostes[i];
+            }
+
+            foreach (Joueur lejoueur in ListJoueurs)
+            {
+                int i = 0;
+                while (lejoueur.Equipe.Id != listEquipe[i].Id)
+                {
+                    i++;
+                }
+                lejoueur.Equipe = listEquipe[i];
             }
         }
 

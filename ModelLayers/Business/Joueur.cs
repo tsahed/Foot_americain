@@ -51,5 +51,12 @@ namespace ModelLayers.Business
             this.Equipe = laEquipe;
         }
         #endregion
+
+        #region Autres méthodes
+        public override string ToString()
+        {
+            return this.Nom;
+        } 
+        #endregion
     }
 }

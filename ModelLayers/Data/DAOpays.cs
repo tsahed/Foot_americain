@@ -23,7 +23,7 @@ namespace ModelLayers.Data
 
             foreach (DataRow r in myTable.Rows)
             {
-                listPays.Add(new Pays((int)r["id"], (string)r["name"]));
+                listPays.Add(new Pays((int)r["id"], (string)r["nom"]));
             }
 
             return listPays;
@@ -32,8 +32,8 @@ namespace ModelLayers.Data
         public Pays SelectByName(string namePays)
         {
             DataTable result = new DataTable();
-            result = this.thedbal.SelectByField("pays", "name = '" + namePays.Replace("'", "''") + "'");
-            Pays foundPays = new Pays((int)result.Rows[0]["id"], (string)result.Rows[0]["name"]);
+            result = this.thedbal.SelectByField("pays", "nom = '" + namePays.Replace("'", "''") + "'");
+            Pays foundPays = new Pays((int)result.Rows[0]["id"], (string)result.Rows[0]["nom"]);
             return foundPays;
 
         }
@@ -41,7 +41,7 @@ namespace ModelLayers.Data
         public Pays SelectById(int idPays)
         {
             DataRow result = this.thedbal.SelectById("Pays", idPays);
-            return new Pays((int)result["id"], (string)result["name"]);
+            return new Pays((int)result["id"], (string)result["nom"]);
 
         }
     }

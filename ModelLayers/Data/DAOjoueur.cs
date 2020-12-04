@@ -66,7 +66,10 @@ namespace ModelLayers.Data
 
             foreach (DataRow r in myTable.Rows)
             {
-                listJoueur.Add(new Joueur((int)r["id"], (string)r["nom"], (DateTime)r["dateEntree"], (DateTime)r["dateNaissance"], (Pays)r["pays"], (Poste)r["poste"], (Equipe)r["equipe"]));
+                Pays myPays = this.leDAOPays.SelectById((int)r["id"]);
+                Equipe myEquipe = this.leDAOEquipe.SelectById((int)r["id"]);
+                Poste myPoste = this.leDAOPoste.SelectById((int)r["id"]);
+                listJoueur.Add(new Joueur((int)r["id"], (string)r["nom"], (DateTime)r["dateEntree"], (DateTime)r["dateNaissance"], myPays, myPoste, myEquipe));
             }
 
             return listJoueur;
@@ -75,14 +78,20 @@ namespace ModelLayers.Data
         public Joueur SelectById(int id)
         {
             DataRow rowJoueur = this.thedbal.SelectById("Joueur", id);
-            return new Joueur((int)rowJoueur["id"], (string)rowJoueur["nom"], (DateTime)rowJoueur["dateEntree"], (DateTime)rowJoueur["dateNaissance"], (Pays)rowJoueur["pays"], (Poste)rowJoueur["poste"], (Equipe)rowJoueur["equipe"]);
+            Pays myPays = this.leDAOPays.SelectById((int)rowJoueur["id"]);
+            Equipe myEquipe = this.leDAOEquipe.SelectById((int)rowJoueur["id"]);
+            Poste myPoste = this.leDAOPoste.SelectById((int)rowJoueur["id"]);
+            return new Joueur((int)rowJoueur["id"], (string)rowJoueur["nom"], (DateTime)rowJoueur["dateEntree"], (DateTime)rowJoueur["dateNaissance"], myPays, myPoste, myEquipe);
         }
 
         public Joueur SelectByName(string name)
         {
             string search = "nom = '" + name + "'";
             DataTable tableJoueur = this.thedbal.SelectByField("Joueur", search);
-            return new Joueur((int)tableJoueur.Rows[0]["id"], (string)tableJoueur.Rows[0]["nom"], (DateTime)tableJoueur.Rows[0]["dateEntree"], (DateTime)tableJoueur.Rows[0]["dateNaissance"], (Pays)tableJoueur.Rows[0]["pays"], (Poste)tableJoueur.Rows[0]["poste"], (Equipe)tableJoueur.Rows[0]["equipe"]);
+            Pays myPays = this.leDAOPays.SelectById((int)tableJoueur.Rows[0]["id"]);
+            Equipe myEquipe = this.leDAOEquipe.SelectById((int)tableJoueur.Rows[0]["id"]);
+            Poste myPoste = this.leDAOPoste.SelectById((int)tableJoueur.Rows[0]["id"]);
+            return new Joueur((int)tableJoueur.Rows[0]["id"], (string)tableJoueur.Rows[0]["nom"], (DateTime)tableJoueur.Rows[0]["dateEntree"], (DateTime)tableJoueur.Rows[0]["dateNaissance"], myPays, myPoste, myEquipe);
         }
     }
 }

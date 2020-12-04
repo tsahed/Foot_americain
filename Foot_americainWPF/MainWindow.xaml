@@ -18,7 +18,7 @@
                 <RowDefinition Height="15*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Equipes : " HorizontalAlignment="Center"/>
-            <ListBox x:Name="ListEquipes" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ListBox x:Name="ListEquipes" ItemsSource="{Binding ListEquipe}" SelectedItem="{Binding SelectedEquipe}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
         <Grid Name="Joueurs" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
                 <RowDefinition Height="15*"/>
             </Grid.RowDefinitions>
             <Label Name="labListJoueurs" Grid.Row="0" Content="Joueurs : " HorizontalAlignment="Center"/>
-            <ListBox x:Name="ListJoueursEquipe" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <ListBox x:Name="ListJoueursEquipe" ItemsSource="{Binding ListJoueurs}" SelectedItem="{Binding SelectedJoueur}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
         <Grid Name="IDJoueur" Grid.Column="2">
             <Grid.RowDefinitions>
@@ -43,18 +43,18 @@
                 <ColumnDefinition Width="2.5*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Nom Joueur : " Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
-            <TextBox Name="EdNom" Grid.Row="0" Grid.Column="1" Margin="10"/>
+            <TextBox Name="EdNom" Text="{Binding Nom}" Grid.Row="0" Grid.Column="1" Margin="10"/>
             <Label Content="Date de Naissance : " Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
-            <DatePicker Name="dateNaiss" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
+            <DatePicker Name="dateNaiss" SelectedDate="{Binding Naissance}" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
             <Label Content="Date d'Entrée : " Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
-            <DatePicker Name="dateEntree" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Grid.Row="2" VerticalAlignment="Center"/>
+            <DatePicker Name="dateEntree" SelectedDate="{Binding Entree}" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Grid.Row="2" VerticalAlignment="Center"/>
             <Label Content="Pays d'origine : " Grid.Row="3" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
-            <ComboBox Name="listPays" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+            <ComboBox Name="listPays"  ItemsSource="{Binding ListPays, Mode=OneTime}" SelectedItem="{Binding Pays}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
             <Label Content="Poste : " Grid.Row="4" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
-            <ComboBox Name="listPostes" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-            <Button Name="BpModif" Content="Mettre à jour" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
-            <Button Name="BpAjout" Content="Ajouter" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
-            <Button Name="BpSupp" Content="Supprimer" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <ComboBox Name="listPostes" ItemsSource="{Binding ListPostes, Mode=OneTime}" SelectedItem="{Binding Poste}" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+            <Button Name="BpModif" Content="Mettre à jour" Command="{Binding UpdateJoueur}" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpAjout" Content="Ajouter" Command="{Binding AddJoueur}" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpSupp" Content="Supprimer" Command="{Binding DeleteJoueur}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
         </Grid>
     </Grid>
 </Window>

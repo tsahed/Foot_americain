@@ -24,7 +24,7 @@ namespace Foot_americainWPF
         public MainWindow(DAOpays thedaopays, DAOequipe thedaoequipe, DAOjoueur thedaojoueur, DAOposte thedaoposte)
         {
             InitializeComponent();
-            //Globale.DataContext = new viewModel.viewModelFromage(thedaopays, thedaofromage);
+            Globale.DataContext = new viewModel.viewModelJoueur(thedaopays, thedaoposte, thedaojoueur, thedaoequipe);
         }
     }
 }
